@@ -46,12 +46,18 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::prefix('/mahasiswa')->group(function(){
             Route::get('/', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
             Route::get('/add', [MahasiswaController::class, 'add'])->name('admin.mahasiswa.add');
-            Route::get('/edit', [MahasiswaController::class, 'edit'])->name('admin.mahasiswa.edit');
+            Route::get('/edit/{id}', [MahasiswaController::class, 'edit'])->name('admin.mahasiswa.edit');
+            Route::post('/store', [MahasiswaController::class, 'store'])->name('admin.mahasiswa.store');
+            Route::post('/update', [MahasiswaController::class, 'update'])->name('admin.mahasiswa.update');
+            Route::get('/{id}', [MahasiswaController::class, 'destroy'])->name('admin.mahasiswa.destroy');
         });
         Route::prefix('/alternatif')->group(function(){
             Route::get('/', [AlternatifController::class, 'index'])->name('admin.alternatif.index');
             Route::get('/add', [AlternatifController::class, 'add'])->name('admin.alternatif.add');
-            Route::get('/edit', [AlternatifController::class, 'edit'])->name('admin.alternatif.edit');
+            Route::get('/edit/{id}', [AlternatifController::class, 'edit'])->name('admin.alternatif.edit');
+            Route::post('/store', [AlternatifController::class, 'store'])->name('admin.alternatif.store');
+            Route::post('/update', [AlternatifController::class, 'update'])->name('admin.alternatif.update');
+            Route::get('/{id}', [AlternatifController::class, 'destroy'])->name('admin.alternatif.destroy');
         });
         Route::prefix('/kriteria')->group(function(){
             Route::get('/', [KriteriaController::class, 'index'])->name('admin.kriteria.index');
