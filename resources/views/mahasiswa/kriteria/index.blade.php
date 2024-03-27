@@ -20,7 +20,6 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">kriteria</h4>
-                    <a href="{{ route('admin.kriteria.add') }}" class="btn btn-primary">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -33,7 +32,6 @@
                                         <th class="sorting" rowspan="1" colspan="1">Kriteria</th>
                                         <th class="sorting" rowspan="1" colspan="1">Jenis</th>
                                         <th class="sorting" rowspan="1" colspan="1">Type</th>
-                                        <th class="sorting" rowspan="1" colspan="1">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,16 +42,10 @@
                                             <td>{{ $kriteria->name }}</td>
                                             <td>{{ $kriteria->type }}</td>
                                             <td>{{ $kriteria->value }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.kriteria.edit', $kriteria->id) }}" class="badge badge-warning">Edit</a>
-                                                <a href="{{ route('admin.kriteria.destroy', $kriteria->id) }}" class="badge badge-danger">Delete</a>
-                                            </td>
                                         </tr>
                                     @endforeach
-                                  
                                 </tbody>
                             </table>
-                          
                         </div>
                     </div>
                 </div>

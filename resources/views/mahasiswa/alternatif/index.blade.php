@@ -20,7 +20,6 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">alternatif</h4>
-                    <a href="{{ route('admin.alternatif.add') }}" class="btn btn-primary">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -31,7 +30,6 @@
                                         <th>No</th>
                                         <th>Kode</th>
                                         <th>Alternatif</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,13 +38,8 @@
                                             <td>{{ $index+1 }}</td>
                                             <td>{{ $item->code }}</td>
                                             <td>{{ $item->alternatif }}</td>
-                                            <td class="d-flex justify-content-center">
-                                                <a href="{{ route('admin.alternatif.edit', $item->id) }}" class="badge badge-warning mx-1">Edit</a>
-                                                <a href="{{ route('admin.alternatif.destroy', $item->id) }}" class="badge badge-danger mx-1">Delete</a>
-                                            </td>
                                         </tr>
                                     @endforeach
-                                  
                                 </tbody>
                             </table>
                           

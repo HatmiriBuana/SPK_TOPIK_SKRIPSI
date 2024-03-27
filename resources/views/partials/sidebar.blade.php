@@ -47,13 +47,13 @@
                 </a>
             </li>
             <li>
-                <a class="has-arrows" href="#">
+                <a class="has-arrows" href="{{ route('mahasiswa.alternatif.index') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Alternatif</span>
                 </a>
             </li>
             <li>
-                <a class="has-arrows" href="#">
+                <a class="has-arrows" href="{{ route('mahasiswa.kriteria.index') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Kriteria</span>
                 </a>
@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li>
-                <a class="has-arrows" href="#">
+                <a class="has-arrows" href="{{ route('mahasiswa.profile.index') }}">
                     <i class="icon icon-app-store"></i>
                     <span class="nav-text">Profile</span>
                 </a>
