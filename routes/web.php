@@ -7,7 +7,11 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Mahasiswa\AlternatifController as MahasiswaAlternatifController;
 use App\Http\Controllers\Mahasiswa\KriteriaController as MahasiswaKriteriaController;
+use App\Http\Controllers\Mahasiswa\PenilaianController;
 use App\Http\Controllers\Mahasiswa\ProfileController as MahasiswaProfileController;
+use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +48,14 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::prefix('/dashboard/admin')->group(function(){
         Route::get('/', function(){
-            return view('admin.index');
+            $alternatif = Alternatif::count();
+            $kriteria = Kriteria::count();
+            $mahasiswa = User::where('role_id', 1)->count();
+            return view('admin.index', [
+                'alternatif' => $alternatif,
+                'kriteria' => $kriteria,
+                'mahasiswa' => $mahasiswa,
+            ]);
         })->name('admin.dashboard');
         Route::prefix('/mahasiswa')->group(function(){
             Route::get('/', [MahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
@@ -67,6 +78,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
             Route::get('/add', [KriteriaController::class, 'add'])->name('admin.kriteria.add');
             Route::get('/edit/{id}', [KriteriaController::class, 'edit'])->name('admin.kriteria.edit');
             Route::post('/store', [KriteriaController::class, 'store'])->name('admin.kriteria.store');
+            Route::post('/storesubkriteria', [KriteriaController::class, 'storesubkriteria'])->name('admin.kriteria.store_sub');
             Route::post('/update', [KriteriaController::class, 'update'])->name('admin.kriteria.update');
             Route::get('/{id}', [KriteriaController::class, 'destroy'])->name('admin.kriteria.destroy');
         });
@@ -83,7 +95,14 @@ Route::middleware(['auth','role:admin'])->group(function () {
 Route::middleware(['auth','role:mahasiswa'])->group(function () {
     Route::prefix('/dashboard/mahasiswa')->group(function(){
         Route::get('/', function(){
-            return view('mahasiswa.index');
+            $alternatif = Alternatif::count();
+            $kriteria = Kriteria::count();
+            $mahasiswa = User::where('role_id', 1)->count();
+            return view('mahasiswa.index', [
+                'alternatif' => $alternatif,
+                'kriteria' => $kriteria,
+                'mahasiswa' => $mahasiswa,
+            ]);
         })->name('mahasiswa.dashboard');
 
         Route::prefix('/profile')->group(function(){
@@ -100,6 +119,14 @@ Route::middleware(['auth','role:mahasiswa'])->group(function () {
 
         Route::prefix('/kriteria')->group(function(){
             Route::get('/', [MahasiswaKriteriaController::class, 'index'])->name('mahasiswa.kriteria.index');
+        });
+
+        Route::prefix('/penilaian')->group(function(){
+            Route::get('/', [PenilaianController::class, 'index'])->name('mahasiswa.penilaian.index');
+            Route::get('/history', [PenilaianController::class, 'history'])->name('mahasiswa.penilaian.history');
+            Route::get('/history/{id}', [PenilaianController::class, 'detail_history'])->name('mahasiswa.penilaian.detail_history');
+            Route::get('/cetak/{id}', [PenilaianController::class, 'generate_pdf'])->name('mahasiswa.penilaian.generate_pdf');
+            Route::post('/', [PenilaianController::class, 'store'])->name('mahasiswa.penilaian.store');
         });
     });
 });
