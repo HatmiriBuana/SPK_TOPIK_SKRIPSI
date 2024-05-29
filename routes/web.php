@@ -81,6 +81,9 @@ Route::middleware(['auth','role:admin'])->group(function () {
             Route::post('/storesubkriteria', [KriteriaController::class, 'storesubkriteria'])->name('admin.kriteria.store_sub');
             Route::post('/update', [KriteriaController::class, 'update'])->name('admin.kriteria.update');
             Route::get('/{id}', [KriteriaController::class, 'destroy'])->name('admin.kriteria.destroy');
+
+            Route::post('/sub/update', [KriteriaController::class, 'updateSubKriteria'])->name('admin.sub-kriteria.update');
+            Route::get('/sub/{id}', [KriteriaController::class, 'deleteSubKriteria'])->name('admin.sub-kriteria.destroy');
         });
         Route::prefix('/profile')->group(function(){
             Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
