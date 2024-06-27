@@ -46,7 +46,12 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Prodi</label>
-                                    <input name="study_program" value="{{ $student->study_program }}" type="text" class="form-control" placeholder="Informatika">
+                                    {{-- <input name="study_program" value="{{ $student->study_program }}" type="text" class="form-control" placeholder="Informatika"> --}}
+                                    <select name="study_program" class="form-control">
+                                        <option value="{{ $student->study_program }}">{{ $student->study_program }}</option>
+                                        <option value="D4 Teknologi Informasi">D4 Teknologi Informasi</option>
+                                        <option value="D4 Sistem Informasi Bisnis">D4 Sistem Informasi Bisnis</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Jurusan</label>
@@ -54,7 +59,25 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Kelas</label>
-                                    <input name="class" value="{{ $student->class }}" type="text" class="form-control" placeholder="Informatika">
+                                    {{-- <input name="class" value="{{ $student->class }}" type="text" class="form-control" placeholder="Informatika"> --}}
+                                    <select name="class" class="form-control">
+                                        <option value="{{ $student->class }}">{{ $student->class }}</option>
+                                        <option value="TI 4A">TI 4A</option>
+                                        <option value="TI 4B">TI 4B</option>
+                                        <option value="TI 4C">TI 4C</option>
+                                        <option value="TI 4D">TI 4D</option>
+                                        <option value="TI 4E">TI 4E</option>
+                                        <option value="TI 4F">TI 4F</option>
+                                        <option value="TI 4G">TI 4G</option>
+                                        <option value="TI 4H">TI 4H</option>
+                                        <option value="TI 4I">TI 4I</option>
+                                        <option value="SI 4A">SI 4A</option>
+                                        <option value="SI 4B">SI 4B</option>
+                                        <option value="SI 4C">SI 4C</option>
+                                        <option value="SI 4D">SI 4D</option>
+                                        <option value="SI 4E">SI 4E</option>
+                                        <option value="SI 4F">SI 4F</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Username</label>
